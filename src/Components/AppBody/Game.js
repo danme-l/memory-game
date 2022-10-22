@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import ScoreBoard from './ScoreBoard';
+import InfoContainer from './InfoContainer';
 import CardContainer from './CardContainer';
 
 /* eslint-disable */
 const Game = () => {
+    const initialNum = 4;
     const [curScore, setCurScore] = useState(0);
     const [bestScore, setBestScore] = useState(0);
+    const [numCards, setNumCards] = useState(initialNum);
     const [characters, setCharacters] = useState([]);
     const [guesses, setGuesses] = useState([]);
+    const [isLoading, setLoading] = useState(true);
+    const [gameWon, setGameWon] = useState(false);
 
     const fetchChars = async (num) => {
         const charList = [];
@@ -66,13 +70,15 @@ const Game = () => {
         // set the scores
         if (guesses.includes(guessedID)) {
             handleLoss();
-        } else {
+        }  else {
+            if (guesses.length + 1 === characters.length) { // if we've guessed all the characters available
+                handleWin();
+            }
             setCurScore(curScore + 1);
             if (curScore >= bestScore) {
                 setBestScore(curScore+1);
             }
         }
-        console.log(guesses);
         
         // shuffle cards
         shuffleArray(characters);
@@ -81,19 +87,40 @@ const Game = () => {
     const handleLoss = () => {
         setCurScore(0);
         setGuesses([]);
-        alert('You lose!')
+        setNumCards(initialNum);
+        alert('You lose!');
+    }
+
+    const handleWin = () => {
+        setGuesses([]);
+        alert('you won!');
+        setNumCards(numCards + 2);
     }
     
     useEffect(() => {
         const loadCards = async () => {
-            setCharacters(await fetchChars(10))
+            setCharacters(await fetchChars(numCards))
           }
-          loadCards()
-      }, []);
+          
+          // I like the Rick gif I wanna see it 
+          setTimeout(() => {
+            setLoading(false);
+          }, 1200);          
+          loadCards();
+      }, [numCards]);
+
+    if (isLoading) {
+        return (
+            <div>
+                <h1> Loading...</h1>
+                <iframe src="https://giphy.com/embed/IgpAALi5hEv1IFmCrZ" width="480" height="480" frameBorder="0" className="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/rickandmorty-season-1-adult-swim-rick-and-morty-IgpAALi5hEv1IFmCrZ">via GIPHY</a></p>
+            </div>
+        )
+    }
 
     return (
         <div>
-            <ScoreBoard 
+            <InfoContainer 
                 curScore={curScore}
                 bestScore={bestScore}
                 />

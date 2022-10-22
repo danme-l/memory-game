@@ -8,7 +8,7 @@ class Header extends Component {
         return (
         <header id="header" className="App-header-footer">
             <img src={rickLogo} className="React-logo" alt="rick logo" />
-            <h1>React Memory Cards</h1>
+            <h1>Rick and Morty Memory Cards</h1>
             <img src={mortyLogo} className="React-logo" alt="jerry logo" />
         </header>
         )
