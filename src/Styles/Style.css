@@ -1,0 +1,34 @@
+:root {
+    --main-color: lightblue;
+    --second-color: darkslategray;
+}
+
+/* Card Section */
+.card {
+    border: 2px solid black;
+    margin: 5px;
+}
+
+.card:hover {
+    color: var(--main-color);
+    background-color: var(--second-color);
+}
+
+/* End Card Section */
+/* Card Container Section */
+
+#cardContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 90%;
+}
+
+/* End Card Container Section */
+/* Score Board Section */
+#scoreBoard {
+    align-self: right;
+}
+
+/* End Score Board Section */
+/* General Section */

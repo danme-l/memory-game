@@ -1,0 +1,44 @@
+/* Styling for standard Header and Footer for React projects for Odin */
+/* HEADER STYLES */
+.App-header-footer {
+    background-color: darkslategray;
+    min-height: 5vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+/* FOOTER STYLES */
+
+/* ICON STYLES */
+#React-logo {
+    height: 5vh;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+#React-logo {
+    animation: logo-spin infinite 20s linear;
+    }
+}
+
+@keyframes logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.footerLogo {
+    color: white;
+    margin: 4px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.footerLogo:hover {
+    transform: rotate(360deg);
+}
