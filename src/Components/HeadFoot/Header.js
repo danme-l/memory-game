@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import './HeadFoot.css';
-import logo from './logo.svg';
+import rickLogo from './icons8-rick-sanchez.svg';
+import mortyLogo from './icons8-morty-smith.svg';
 
 class Header extends Component {
     render() {
         return (
-        <header className="App-header-footer">
-            <img src={logo} id="React-logo" alt="logo" />
+        <header id="header" className="App-header-footer">
+            <img src={rickLogo} className="React-logo" alt="rick logo" />
             <h1>React Memory Cards</h1>
+            <img src={mortyLogo} className="React-logo" alt="jerry logo" />
         </header>
         )
     }

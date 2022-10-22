@@ -6,7 +6,7 @@
 /* Card Section */
 .card {
     border: 2px solid black;
-    margin: 5px;
+    margin: 8px;
 }
 
 .card:hover {

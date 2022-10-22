@@ -1,25 +1,44 @@
 /* Styling for standard Header and Footer for React projects for Odin */
 /* HEADER STYLES */
 .App-header-footer {
+    padding: 8px;
     background-color: darkslategray;
-    min-height: 5vh;
+    color: white;
+}
+
+#header {
+    min-height: 9vh;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    color: white;
 }
 
+
 /* FOOTER STYLES */
+#attributions a {
+    color: lightblue;
+}
+
+#footer {
+    min-height: 4vh;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
 /* ICON STYLES */
-#React-logo {
+.React-logo {
     height: 5vh;
     pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-#React-logo {
+.React-logo {
     animation: logo-spin infinite 20s linear;
     }
 }
@@ -35,7 +54,6 @@
 
 .footerLogo {
     color: white;
-    margin: 4px;
     transition: transform 0.3s ease-in-out;
 }
 
