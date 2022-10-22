@@ -11,7 +11,6 @@ const Game = () => {
     const [characters, setCharacters] = useState([]);
     const [guesses, setGuesses] = useState([]);
     const [isLoading, setLoading] = useState(true);
-    const [gameWon, setGameWon] = useState(false);
 
     const fetchChars = async (num) => {
         const charList = [];
@@ -96,6 +95,10 @@ const Game = () => {
         alert('you won!');
         setNumCards(numCards + 2);
     }
+
+    const getUserCardNumber = (e) => {
+        setNumCards(e.target.value)
+    }
     
     useEffect(() => {
         const loadCards = async () => {
@@ -123,6 +126,7 @@ const Game = () => {
             <InfoContainer 
                 curScore={curScore}
                 bestScore={bestScore}
+                
                 />
 
             <CardContainer 

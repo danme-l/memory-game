@@ -27,7 +27,17 @@
 /* End Card Container Section */
 /* Score Board Section */
 #infoContainer {
-    align-self: right;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#scoreTable, #cardNumberInput {
+    margin: 20px;
+}
+
+#scoreTable th, td {
+    padding: 5px;
 }
 
 /* End Score Board Section */
