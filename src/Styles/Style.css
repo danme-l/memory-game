@@ -42,3 +42,11 @@
 
 /* End Score Board Section */
 /* General Section */
+
+.invisible {
+    visibility: hidden;
+}
+
+iframe:hover {
+    border: 1px solid white;
+}

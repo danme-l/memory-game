@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import InfoContainer from './InfoContainer';
 import CardContainer from './CardContainer';
+import WinLossBox from './WinLossBox';
 
 /* eslint-disable */
 const Game = () => {
@@ -11,6 +12,8 @@ const Game = () => {
     const [characters, setCharacters] = useState([]);
     const [guesses, setGuesses] = useState([]);
     const [isLoading, setLoading] = useState(true);
+    const [gameWon, setGameWon] = useState(false);
+    const [gameLost, setGameLost] = useState(false);
 
     const fetchChars = async (num) => {
         const charList = [];
@@ -62,6 +65,11 @@ const Game = () => {
      }
 
     const handleGuess = (e) => {
+        // don't let anyone guess if the game is over
+        if (gameWon || gameLost) {
+            return;
+        }
+
         // whatever was guessed, that ID should be put in the guess list
         let guessedID = e.target.parentNode.id
         setGuesses(guesses.concat(guessedID));
@@ -86,21 +94,29 @@ const Game = () => {
     const handleLoss = () => {
         setCurScore(0);
         setGuesses([]);
-        setNumCards(initialNum);
-        alert('You lose!');
+        setGameLost(true);
     }
 
     const handleWin = () => {
-        setGuesses([]);
-        alert('you won!');
-        setNumCards(numCards + 2);
+        setGameWon(true);
     }
 
     const getUserCardNumber = (n) => {
         setNumCards(n);
-        console.log(numCards);
+        resetGame();
+    }
+
+    const resetGame = () => {
+        setGameWon(false);
+        setGameLost(false);
+        setGuesses([]);
+        setCurScore(0);
     }
     
+    const isVisible = () => {
+        return;
+    }
+
     useEffect(() => {
         const loadCards = async () => {
             setCharacters(await fetchChars(numCards))
@@ -123,7 +139,7 @@ const Game = () => {
     }
 
     return (
-        <div>
+        <div id="gameBox">
             <InfoContainer 
                 curScore={curScore}
                 bestScore={bestScore}
@@ -133,6 +149,13 @@ const Game = () => {
             <CardContainer 
                 charList={characters}
                 handleGuess={handleGuess} 
+                isVisible={isVisible}
+                />
+
+            <WinLossBox 
+                id="winLossBox"
+                gameWon={gameWon}
+                gameLost={gameLost}
                 />
         </div>
     );
