@@ -96,8 +96,9 @@ const Game = () => {
         setNumCards(numCards + 2);
     }
 
-    const getUserCardNumber = (e) => {
-        setNumCards(e.target.value)
+    const getUserCardNumber = (n) => {
+        setNumCards(n);
+        console.log(numCards);
     }
     
     useEffect(() => {
@@ -126,7 +127,7 @@ const Game = () => {
             <InfoContainer 
                 curScore={curScore}
                 bestScore={bestScore}
-                
+                getUserCardNumber={getUserCardNumber}
                 />
 
             <CardContainer 
