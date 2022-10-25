@@ -5,7 +5,7 @@ import WinLossBox from './WinLossBox';
 
 /* eslint-disable */
 const Game = () => {
-    const initialNum = 4;
+    const initialNum = 7;
     const [curScore, setCurScore] = useState(0);
     const [bestScore, setBestScore] = useState(0);
     const [numCards, setNumCards] = useState(initialNum);
@@ -14,6 +14,7 @@ const Game = () => {
     const [isLoading, setLoading] = useState(true);
     const [gameWon, setGameWon] = useState(false);
     const [gameLost, setGameLost] = useState(false);
+    const [cardsVisible, setCardsVisible] = useState(true);
 
     const fetchChars = async (num) => {
         const charList = [];
@@ -92,12 +93,14 @@ const Game = () => {
     }
 
     const handleLoss = () => {
+        setCardsVisible(false);
         setCurScore(0);
         setGuesses([]);
-        setGameLost(true);
+        setGameLost(true);        
     }
 
     const handleWin = () => {
+        setCardsVisible(false);
         setGameWon(true);
     }
 
@@ -111,11 +114,9 @@ const Game = () => {
         setGameLost(false);
         setGuesses([]);
         setCurScore(0);
+        setCardsVisible(true);
     }
-    
-    const isVisible = () => {
-        return;
-    }
+
 
     useEffect(() => {
         const loadCards = async () => {
@@ -149,7 +150,7 @@ const Game = () => {
             <CardContainer 
                 charList={characters}
                 handleGuess={handleGuess} 
-                isVisible={isVisible}
+                isVisible={cardsVisible}
                 />
 
             <WinLossBox 

@@ -3,6 +3,18 @@
     --second-color: darkslategray;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#gameBox {
+    min-height: calc(100vh - 300px);
+    position: relative;
+    padding-bottom: 60px;
+}
+
 /* Card Section */
 .card {
     border: 2px solid black;
@@ -14,14 +26,19 @@
     background-color: var(--second-color);
 }
 
+.card > img {
+    width: auto;
+}
+
 /* End Card Section */
 /* Card Container Section */
 
 #cardContainer {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 90%;
+    display: grid;
+    gap: 4px;
+    padding: 4px;
+    grid-template-rows: repeat(auto-fit, 1fr);
+    grid-template-columns: repeat(5, clamp(200px, 20%, 400px));
 }
 
 /* End Card Container Section */
